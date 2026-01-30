@@ -10,8 +10,11 @@ class UsuariosDAO:
 
 
     @classmethod
-    def buscar_usuario(cls, id: int):
+    def buscar_usuario(cls, email: str):
         with Session(engine) as session:
-            usuarios = select(Users).where(Users.id == id)
+            usuarios = select(Users).where(Users.email == email)
             usuario_unico = session.exec(usuarios).first()
             print(usuario_unico)
+            if usuario_unico:
+                return usuario_unico
+            return False

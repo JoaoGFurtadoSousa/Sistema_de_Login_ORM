@@ -25,24 +25,23 @@ class UsuariosController:
 
 
     @classmethod
-    def salvar_usuario(cls, nome: str, email: str, password: str):
+    def cadastrar_usuario(cls, nome: str, email: str, password: str):
         if nome == None or email==None or password==None:
             return False
         email_verificado = cls.valida_se_o_email_e_valido(email= email)
         if email_verificado == True:
             password_criptografada = cls.criptografa_password(password= password)
-            UsuariosDAO.salvar_no_banco(Users(nome= nome, email= email_verificado, password= password_criptografada))
+            UsuariosDAO.salvar_no_banco(Users(nome= nome, email= email, password= password_criptografada))
             return True
         return False
-    
+
     @classmethod
-    def buscar_usuario(cls, id: int):
-        with Session(engine) as session:
-            usuarios = select(Users).where(Users.id == id)
-            usuario_unico = session.exec(usuarios).first()
-            print(usuario_unico)
+    def login(cls, email: str, password: str):
+        usuario = UsuariosDAO.buscar_usuario(email= email)
+        if usuario != False:        
+            password_criptografada = cls.criptografa_password(password= password)
+            if usuario.password == password_criptografada:
+                return True
+        return False
 
 
-"""    @classmethod
-    def alterar_usuario_ja_existente:
-        UsersView.buscar_usuario(1)"""

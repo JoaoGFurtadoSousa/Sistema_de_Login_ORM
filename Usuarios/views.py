@@ -8,11 +8,18 @@ def exibir_menu():
             nome = input("Nome:")
             email = input("Email: ")
             password = input("Password: ")
-            usuario = UsuariosController.salvar_usuario(nome= nome, email= email, password= password)
+            usuario = UsuariosController.cadastrar_usuario(nome= nome, email= email, password= password)
             if usuario != True:
                 print("Erro ao criar o usuario")
                 return False
             print("Usuario criado com sucesso!")
+        case 2:
+            email = input("Email: ")
+            password = input("Password: ")
+            usuario = UsuariosController.login(email= email, password= password)
+            if usuario:
+                return print("Usuario Logado")
+            print("Dados invalidos")
 
 
 exibir_menu()
