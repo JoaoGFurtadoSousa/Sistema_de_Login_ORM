@@ -1,24 +1,18 @@
-from models import Users, engine
-from sqlmodel import Session, select
+from controller import UsuariosController
 
-usuario = {"nome" : "John",
-           "email" :"john@email.com",
-           "password" :"teste123"}
 
-usuario= Users(**usuario)
+def exibir_menu():
+    escolha_usuario = int(input("Selecione o que quer fazer: \n[1]Cadastro \n[2]Login "))
+    match escolha_usuario:
+        case 1:
+            nome = input("Nome:")
+            email = input("Email: ")
+            password = input("Password: ")
+            usuario = UsuariosController.salvar_usuario(nome= nome, email= email, password= password)
+            if usuario != True:
+                print("Erro ao criar o usuario")
+                return False
+            print("Usuario criado com sucesso!")
 
-class UsersView:
-    @classmethod
-    def salvar_no_banco():
-        with Session(engine) as session: #session é como se fosse o cursor (bibliotecario)
-            session.add(usuario)
-            session.commit()
 
-    @classmethod
-    def buscar_usuario(cls, id: int):
-        with Session(engine) as session:
-            usuarios = select(Users).where(Users.id == id)
-            usuario_unico = session.exec(usuarios).first()
-            print(usuario_unico)
-
-UsersView.buscar_usuario(1)
+exibir_menu()
