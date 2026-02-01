@@ -14,7 +14,6 @@ class UsuariosDAO:
         with Session(engine) as session:
             usuarios = select(Users).where(Users.email == email)
             usuario_unico = session.exec(usuarios).first()
-            print(usuario_unico)
             if usuario_unico:
                 return usuario_unico
             return False

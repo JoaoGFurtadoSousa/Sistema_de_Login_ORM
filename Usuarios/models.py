@@ -9,5 +9,5 @@ class Users(SQLModel, table= True):
     password: str
 
 
-engine = create_engine("sqlite:///usuarios.db", echo= True) #conexão com o bd como se fosse a variavel conexão no sqlite
+engine = create_engine("sqlite:///usuarios.db") #conexão com o bd como se fosse a variavel conexão no sqlite
 SQLModel.metadata.create_all(engine)
