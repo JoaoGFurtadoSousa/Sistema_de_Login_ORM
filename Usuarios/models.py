@@ -5,7 +5,7 @@ from pydantic import EmailStr
 class Users(SQLModel, table= True):
     id: int = Field(primary_key= True)
     nome: str
-    email: EmailStr
+    email: EmailStr = Field(index= True)
     password: str
 
 

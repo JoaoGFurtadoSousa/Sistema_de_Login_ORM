@@ -12,7 +12,6 @@ class UsuariosController:
         else: 
             validacao_de_string = re.compile('[a-zA-Z0-9]')
             validacao_password = re.fullmatch(validacao_de_string, password)
-            print(validacao_password)
             return True
         
 
