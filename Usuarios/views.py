@@ -13,11 +13,7 @@ def exibir_menu():
                 print("Erro ao criar o usuario")
                 return False
             print("Usuario criado com sucesso!")
-            usuario_login = UsuariosController.login(email= email, password= password)  
-            if usuario_login:
-                print("Usuario logado com sucesso!")
-            else:
-                print("Erro ao logar o usuario")
+            UsuariosController.login(email= email, password= password) 
         case 2:
             email = input("Email: ")
             password = input("Password: ")
