@@ -20,7 +20,7 @@ O objetivo do código é **simular um fluxo real de autenticação**, utilizando
 ## Quais tecnologias são usadas?
 As principais tecnologias e estruturas utilizadas no projeto são:
 
-- **Python 3.11
+- **Python 3.11**
 - **SQLModel** (ORM)
 - **SQLite** (banco de dados)
 - **Arquitetura MVC**
